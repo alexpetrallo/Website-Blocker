@@ -1,0 +1,5 @@
+Hello ${PERSON_NAME},
+
+this is a message that is being sent with python.
+worked for ${HOURS_WORKED} hours.
+thanks for reading. :)
