@@ -2,6 +2,7 @@ import time
 from datetime import datetime as dt
 from datetime import timedelta
 import os
+from emailTest import main
 
 hosts_temp = "hosts"
 hosts_path = r'C:\Windows\System32\drivers\etc\hosts'  #the r is so that you can read the \ not as an escape character
@@ -14,16 +15,11 @@ if os.path.exists(filename):
     append_write = 'a' #a for append my dude
 else:
     append_write = 'w' #dubya for wwwwwrite that shit my dude
-
 to_write = open(filename, append_write)
-
-
-
-
-
 
 #uncomment
 #get the sites
+
 more = True;
 while more:
     sitess = input("Enter the url of the site you would like to block (DONE if done, DEFAULT if default): ")
@@ -63,17 +59,25 @@ end_time = dt.now() + timedelta(hours = working_hours)
 # + timedelta(hours = working_minutes)
 
 
+
+def working_time():
+    start_time = dt.now()
+    print("Working Time")
+    print(start_time)
+    with open(hosts_path,'r+') as file:
+        content = file.read()
+        for site in bad_sites:
+            if site in content:
+                pass
+            else:
+                file.write(redirect+' '+site+'\n')
+
+
 while True:
     if (start_time<end_time):
-        print("Working Time")
-        print(start_time)
-        with open(hosts_path,'r+') as file:
-            content = file.read()
-            for site in bad_sites:
-                if site in content:
-                    pass
-                else:
-                    file.write(redirect+' '+site+'\n')
+        if True:
+            main()
+        working_time()
     else:
         with open(hosts_path, 'r+') as file:
             content = file.readlines()
@@ -82,8 +86,30 @@ while True:
                 if not any(site in line for site in bad_sites):
                     file.write(line)
                 file.truncate()
-            print("Free time")
-    time.sleep(5)
+            print("This is now your free time.")
+            back_to_work = input("Do you want to get back to work (yes/no)? ")
+            if(back_to_work == 'yes'):
+                to_write = open(filename, append_write)
+                working_hours = int(input("How many hours will you be working? "))
+                to_write.write(str(working_hours) + "\n")
+                end_time = dt.now() + timedelta(hours = working_hours)
+                to_write.close()
+    time.sleep(30)
+
+
+# if (dt.now() == 00:00:00.000000
+
+
+# if (dt(dt.now().year, dt.now().month, dt.now().day, 24, 59) < dt.now() < dt.now() + timedelta(minutes = 1)):
+# if True:
+#     main()
+#find a way to call send email function
+
+
+
+
+
+
 #
 # while True:
 #     #working is 9-5?

@@ -2,10 +2,13 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+import time
+from datetime import datetime as dt
+
 from string import Template
 
 
-
+# print("hello there")
 #Send the mail
 def add_hours(filename):
     total_hours = 0
@@ -16,10 +19,6 @@ def add_hours(filename):
         for i in range (0 , len(hoursCount)):
             total_hours = total_hours + int(hoursCount[i])
         return total_hours
-
-
-
-
 
 def read_template(filename):
     with open(filename, 'r', encoding='utf-8') as template_file:
@@ -57,7 +56,6 @@ def main():
 
     server.login("apetrallo@gmail.com", "Domain10$")
 
-    #
     fromAddress = "apetrallo@gmail.com"
     # toAddress = "apetrall@villanova.edu"
 
@@ -80,6 +78,8 @@ def main():
         server.send_message(msg)
 
         del msg
+        ##later delete the stuff on logged hours file so that it a new day
+        ##do it the same way as free time does to blocked sites in host file
 
     server.quit()
         # text = msg.as_string()
@@ -89,7 +89,7 @@ def main():
     # body = "Hey Jos, just a quick flex that I can spam the fuck outta people's emails now bc this was sent w python!" # The /n separates the message from the headers
     # server.sendmail("apetrallo@gmail.com", "apetrall@villanova.edu", text)
     # s.quit()
-if __name__ == '__main__':
+if __name__ == '__main__': #and dt.now() == dt.now():
     main()
 
 # server.quit()
