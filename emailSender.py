@@ -54,9 +54,9 @@ def main():
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
 
-    server.login("apetrallo@gmail.com", "My password which you cant see hehe")
+    server.login("websiteblockerbot@gmail.com", "pythonblocker")
 
-    fromAddress = "apetrallo@gmail.com"
+    fromAddress = "websiteblockerbot@gmail.com"
     # toAddress = "apetrall@villanova.edu"
 
     #before you go past this you will have to eddit where the logs are being sent bc i changed the path
@@ -71,7 +71,7 @@ def main():
 
         msg['FROM'] = fromAddress
         msg['TO'] = email
-        msg['SUBJECT'] = "Testing My python script"
+        msg['SUBJECT'] = "your productivity from today"
         # body = "new test for other stuff of an email, dont forget to make it message later"
         msg.attach(MIMEText(message, 'plain'))
 
@@ -86,6 +86,7 @@ def main():
 
 
 
+    # body = "Hey Jos, just a quick flex that I can spam the fuck outta people's emails now bc this was sent w python!" # The /n separates the message from the headers
     # server.sendmail("apetrallo@gmail.com", "apetrall@villanova.edu", text)
     # s.quit()
 if __name__ == '__main__': #and dt.now() == dt.now():
