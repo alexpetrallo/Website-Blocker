@@ -4,15 +4,10 @@ from datetime import timedelta
 import os
 from emailSender import main
 
-hosts_temp = "hosts"
+# hosts_temp = "hosts"
 hosts_path = r'C:\Windows\System32\drivers\etc\hosts'  #the r is so that you can read the \ not as an escape character
 #blank page to redirect to
 redirect = '127.0.0.1'
-
-##what i need to  do now is make things more modular and stull call them after the def name()
-##gotta add some of those functions to the else statement and put
-#append_write stuff somewhere else after teh file is deleted in order to repeat in case the day caries over during work time
-
 
 filename = 'work_hours_logged.txt'
 if os.path.exists(filename):
@@ -21,12 +16,10 @@ else:
     append_write = 'w' #dubya for wwwwwrite that shit my dude
 to_write = open(filename, append_write)
 
-#uncomment
 #get the sites
-
+bad_sites = []
 more = True;
 while more:
-    bad_sites = []
     sitess = input("Enter the url of the site you would like to block (DONE if done, DEFAULT if default): ")
     if (sitess == 'DONE'):
         more = False
@@ -36,20 +29,10 @@ while more:
     else:
         bad_sites.append(sitess)
 
-
-
-
-    #later try to enter one by one, DONE if DONE in an if statement
-# bad_sites = ['www.facebook.com', 'www.facebook.com' ,'facebook.com', 'coolmath4kids.com','www.coolmath4kids.com']
-
-
-
 #uncomment
 working_hours = int(input("How many hours will you be working? "))
 to_write.write(str(working_hours) + "\n")
 to_write.close()
-
-
 
 # working_minutes =  int(input("and minutes? "))
 print(dt.now())
@@ -57,12 +40,7 @@ print(dt.now())
 #uncomment
 start_time =  dt.now()
 end_time = dt.now() + timedelta(hours = working_hours)
-
-
-
 # + timedelta(hours = working_minutes)
-
-
 
 def working_time():
     start_time = dt.now()
@@ -78,7 +56,8 @@ def working_time():
 
 
 while True:
-    if (dt(dt.now().year, dt.now().month, dt.now().day, 23, 59) < dt.now() < dt.now() + timedelta(minutes = 1)):
+    # if (dt(dt.now().year, dt.now().month, dt.now().day, 23, 59) < dt.now() < dt.now() + timedelta(minutes = 1)):
+    if True:
         main()
         os.remove("work_hours_logged.txt")
     if (start_time<end_time):
@@ -99,9 +78,10 @@ while True:
                 to_write.write(str(working_hours) + "\n")
                 start_time = dt.now()
                 end_time = dt.now() + timedelta(hours = working_hours)
+                working_time()
                 to_write.close()
                 # end_time = dt.now() + timedelta(hours = working_hours)
-    time.sleep(30)
+    time.sleep(5)
 
 
 # if (dt.now() == 00:00:00.000000

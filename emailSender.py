@@ -27,14 +27,13 @@ def read_template(filename):
 
 
 def get_contacts(filename):
-    print("get_contacts was called")
     names = []
     emails = []
     with open(filename, mode='r', encoding='utf-8') as contacts_file:
         for contact in contacts_file:
             names.append(contact.split()[0])
             emails.append(contact.split()[0])
-    print (names, emails)
+    # print (names, emails)
     return names, emails
 
 # names, emails = get_contacts('contacts.txt')  # read contacts
@@ -47,7 +46,7 @@ def get_contacts(filename):
 #     msg = MIMEText(fp.read())
 # from email.mime.multipart import MIMEMultipart
 def main():
-    print("in main")
+    print("Sending Email")
     names, emails = get_contacts('contacts.txt')
     message_template = read_template('message.txt')
 
@@ -71,7 +70,7 @@ def main():
 
         msg['FROM'] = fromAddress
         msg['TO'] = email
-        msg['SUBJECT'] = "your productivity from today"
+        msg['SUBJECT'] = "Your productivity from today"
         # body = "new test for other stuff of an email, dont forget to make it message later"
         msg.attach(MIMEText(message, 'plain'))
 
