@@ -3,6 +3,7 @@ from datetime import datetime as dt
 from datetime import timedelta
 import os
 from emailSender import main
+# import os.path
 
 # hosts_temp = "hosts"
 hosts_path = r'C:\Windows\System32\drivers\etc\hosts'  #the r is so that you can read the \ not as an escape character
@@ -24,7 +25,7 @@ while more:
     if (sitess == 'DONE'):
         more = False
     elif (sitess == 'DEFAULT'):
-        bad_sites = ['www.facebook.com', 'facebook.com', 'coolmath4kids.com','www.coolmath4kids.com']
+        bad_sites = ['www.facebook.com','www.instagram.com']
         more = False
     else:
         bad_sites.append(sitess)
@@ -56,8 +57,8 @@ def working_time():
 
 
 while True:
-    # if (dt(dt.now().year, dt.now().month, dt.now().day, 23, 59) < dt.now() < dt.now() + timedelta(minutes = 1)):
-    if True:
+    if (dt(dt.now().year, dt.now().month, dt.now().day, 23, 59) < dt.now() < dt.now() + timedelta(minutes = 1)) and os.path.isfile(filename):
+    # if True and os.path.isfile(filename):
         main()
         os.remove("work_hours_logged.txt")
     if (start_time<end_time):
@@ -67,8 +68,8 @@ while True:
             content = file.readlines()
             file.seek(0)
             for line in content:
-                if not any(site in line for site in bad_sites):
-                    file.write(line)
+                # if not any(site in line for site in bad_sites):
+                #     file.write(line)
                 file.truncate()
             print("This is now your free time.")
             back_to_work = input("Do you want to get back to work (yes)? ")
@@ -81,6 +82,7 @@ while True:
                 working_time()
                 to_write.close()
                 # end_time = dt.now() + timedelta(hours = working_hours)
+    # time.sleep(31)
     time.sleep(5)
 
 
