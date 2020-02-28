@@ -85,8 +85,7 @@ def main():
 
 
 
-    # body = "Hey Jos, just a quick flex that I can spam the fuck outta people's emails now bc this was sent w python!" # The /n separates the message from the headers
-    # server.sendmail("apetrallo@gmail.com", "apetrall@villanova.edu", text)
+   
     # s.quit()
 if __name__ == '__main__': #and dt.now() == dt.now():
     main()
